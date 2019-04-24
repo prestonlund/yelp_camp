@@ -1,1 +1,1 @@
-# yelp_camp
+# YelpCamp
