@@ -23,7 +23,17 @@ var commentRoutes    = require("./routes/comments"),
     indexRoutes      = require("./routes/index")
     
 app.locals.moment = require('moment');
-mongoose.connect("mongodb+srv://prestonlund:Leslie4me@cluster0-ipbxi.mongodb.net/yelp_camp?retryWrites=true", { useNewUrlParser: true });
+
+
+var url = process.env.DATABASEURL || 'mongodb://localhost:27017/yelp_camp'
+// I did $ export DATABASEURL=mongodb://localhost:27017/yelp_camp to set local DATABASEURL
+mongoose.connect(url, { useNewUrlParser: true });
+
+// mongoose.connect('mongodb://localhost:27017/yelp_camp', { useNewUrlParser: true });
+
+// Config Vars in Heroku.  Used username and password
+// mongoose.connect("mongodb+srv://username:password@cluster0-ipbxi.mongodb.net/yelp_camp?retryWrites=true", { useNewUrlParser: true });
+
 mongoose.set('useCreateIndex', true);
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
